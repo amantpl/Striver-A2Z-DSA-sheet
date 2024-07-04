@@ -1,0 +1,57 @@
+//{ Driver Code Starts
+// Initial Template for C++
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution {
+  public:
+    string preToPost(string pre_exp) {
+        int n=pre_exp.size();
+        stack<string> st;
+        reverse(pre_exp.begin(),pre_exp.end());
+        for(int i=0;i<n;i++){
+            if((pre_exp[i]>='a'&&pre_exp[i]<='z')||(pre_exp[i]>='A'&&pre_exp[i]<='Z')){
+                st.push(string(1,pre_exp[i]));
+            }else{
+                if(!st.empty()){
+                    string top=st.top();
+                    st.pop();
+                    string prev_top=st.top();
+                    st.pop();
+                    string t=top+prev_top+pre_exp[i];
+                    st.push(t);
+                }
+            }
+        }
+        return st.top();
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t = 1;
+    cin >> t;
+
+    // freopen ("output_gfg.txt", "w", stdout);
+
+    while (t--) {
+        // Input
+        string prefix;
+        cin >> prefix;
+
+        Solution obj;
+        cout << obj.preToPost(prefix) << endl;
+
+        // cout << "~\n";
+    }
+    // fclose(stdout);
+
+    return 0;
+}
+
+// } Driver Code Ends
