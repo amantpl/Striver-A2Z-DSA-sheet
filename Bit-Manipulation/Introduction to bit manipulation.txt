@@ -1,0 +1,68 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution {
+  public:
+    int todecimal(string x) {
+        int len = x.size();
+        int base = 1;
+        int num = 0;
+        for (int i = len - 1; i >= 0; i--) {
+            if (x[i] == '1') {
+                num += base;
+            }
+            base *= 2;
+        }
+        return num;
+    }
+    string tobinary(int num) {
+        if (num == 0) return "0";
+        string res = "";
+        while (num > 0) {
+            res += (num % 2) + '0';
+            num /= 2;
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+    void bitManipulation(int num, int i) {
+        string t = tobinary(num);
+        int n = t.size();
+        int index = n - i; // Adjusting for 1-based index
+
+        // If index is out of bounds, pad the binary string with leading zeros
+        while (index < 0) {
+            t = "0" + t;
+            index++;
+        }
+
+        cout << t[index] << " ";
+
+        // Set the i-th bit
+        t[index] = '1';
+        cout << todecimal(t) << " ";
+
+        // Clear the i-th bit
+        t[index] = '0';
+        cout << todecimal(t);
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, i;
+        cin >> n >> i;
+        Solution ob;
+        ob.bitManipulation(n, i);
+        cout << "\n";
+    }
+    return 0;
+}
+// } Driver Code Ends
