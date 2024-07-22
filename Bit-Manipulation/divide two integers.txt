@@ -1,0 +1,10 @@
+class Solution {
+public:
+    long long divide(long long dividend, long long divisor) {
+        long long ans=dividend/divisor;
+        if(ans>INT_MAX){
+            return ans-1;
+        }
+        return ans;
+    }
+};
