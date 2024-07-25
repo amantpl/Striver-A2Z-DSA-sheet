@@ -1,0 +1,55 @@
+//{ Driver Code Starts
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+
+
+class Solution{
+	public:
+bool isPrime(int num) {
+    // Handle edge cases
+    if (num <= 1) return false;
+    if (num == 2) return true; // 2 is the only even prime number
+    if (num % 2 == 0) return false; // other even numbers are not prime
+
+    // Check for factors from 3 to the square root of the number
+    for (int i = 3; i<=:sqrt(num);i+= 2) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+	vector<int>AllPrimeFactors(int N) {
+	    vector<int> list;
+	    for(int i=2;i<=N;i++){
+	        if(N%i==0){
+	            if(isPrime(i)){
+	                list.push_back(i);
+	            }
+	        }
+	    }
+	    return list;
+	}
+};
+
+//{ Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		long long int N;
+		cin >> N;
+		Solution ob;
+		vector<int>ans = ob.AllPrimeFactors(N);
+		for(auto i: ans)
+			cout << i <<" ";
+		cout <<"\n";
+	}  
+	return 0;
+}
+// } Driver Code Ends
